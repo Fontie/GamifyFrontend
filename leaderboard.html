@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<script src="env.js"></script>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaderboard</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  h1 {
+    text-align: center;
+  }
+  #leaderboard {
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #leaderboard th, #leaderboard td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+  }
+  #leaderboard th {
+    background-color: #78fb4d;
+  }
+
+  /* Highlight rows */
+  .gold {
+    background-color: #ffe44b; /* gold */
+    color: #000;
+    font-weight: bold;
+  }
+  .silver {
+    background-color: #cfcfcf; /* silver */
+    color: #000;
+    font-weight: bold;
+  }
+  .bronze {
+    background-color: #ff9c39; /* bronze */
+    color: #000;
+    font-weight: bold;
+  }
+
+  #backButton {
+    display: block;
+    margin: 30px auto 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+
+</head>
+<body>
+    <button id="backButton" onclick="goBack()">Back</button>
+  <h1>Leaderboard</h1>
+  <table id="leaderboard">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboardBody">
+      <!-- Leaderboard entries will go here -->
+    </tbody>
+  </table>
+
+  
+
+ <script>
+  async function fetchLeaderboard() {
+    try {
+      const response = await fetch(window.env.API_URL+'/api/score/leaderboard');
+      if (!response.ok) {
+        throw new Error('Failed to fetch leaderboard.');
+      }
+
+      const data = await response.json();
+      const tbody = document.getElementById('leaderboardBody');
+      tbody.innerHTML = '';
+
+      data.forEach((player, index) => {
+        const row = document.createElement('tr');
+
+        // Add class for top 3
+        if (index === 0) row.classList.add('gold');
+        else if (index === 1) row.classList.add('silver');
+        else if (index === 2) row.classList.add('bronze');
+
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${player.name}</td>
+          <td>${player.score}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    } catch (error) {
+      console.error('Error loading leaderboard:', error);
+      document.getElementById('leaderboardBody').innerHTML =
+        '<tr><td colspan="3">Error loading leaderboard.</td></tr>';
+    }
+  }
+
+  function goBack() {
+    window.location.href = 'index.html'; // Change to your actual page
+  }
+
+  fetchLeaderboard();
+</script>
+
+</body>
+</html>
