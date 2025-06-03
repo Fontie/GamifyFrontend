@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<script src="env.js"></script>
+
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <div id="loginForm">
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="login()">Login</button>
+  </div>
+  <div id="welcome" style="display:none;">
+    Welcome, <span id="userName"></span>!
+  </div>
+
+  <button onclick="logout()">Logout</button>
+
+  <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  #loginForm, #welcome {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+    text-align: center;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+
+  input[type="text"]:focus {
+    border-color: #0077cc;
+    outline: none;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #005fa3;
+  }
+
+  span#welcomeName {
+    font-weight: bold;
+    color: #0077cc;
+  }
+</style>
+
+
+  <script>
+    const API_URL = window.env.API_URL+"/api/score/login"; // Adjust if hosted differently
+
+    function login() {
+      const name = document.getElementById('nameInput').value;
+      fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Name: name })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          localStorage.setItem('userName', data.name);
+          showWelcome(data.name);
+        }
+      });
+    }
+
+    function logout() {
+  localStorage.removeItem('userName');
+  location.reload(); // Simple way to reset the UI
+}
+
+
+    function showWelcome(name) {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('welcome').style.display = 'block';
+      document.getElementById('userName').innerText = name;
+    }
+
+    // Auto-login if name is saved
+    const savedName = localStorage.getItem('userName');
+    if (savedName) {
+      showWelcome(savedName);
+    }
+  </script>
+</body>
+</html>

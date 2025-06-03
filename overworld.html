@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<script src="config.js"></script>
+<script src="env.js"></script>
 
 <html lang="en">
 <head>
@@ -19,43 +19,7 @@
         }
     </style>
 </head>
-<body>  
-
-    <div id="game-container">
-        <p>No game loaded yet.</p>
-    </div>
-
-    <script>
-        async function loadGame() {
-            const gameId = "overworldfinal4";
-
-            try {
-                // Fetch the game URL from the backend
-                const response = await fetch(window.env.API_URL+`/api/game/load/${gameId}`);
-                
-                if (!response.ok) throw new Error("Game not found or error loading.");
-
-                const { url } = await response.json();
-
-                // Clear previous content and create an iframe for the game
-                const container = document.getElementById("game-container");
-                container.innerHTML = ""; // Clear previous game
-                
-                const iframe = document.createElement("iframe");
-                iframe.src = url;
-                iframe.width = "100%";
-                iframe.height = "100%";
-                iframe.style.border = "none";
-
-                container.appendChild(iframe);
-            } catch (error) {
-                console.error("Error loading game:", error);
-                alert("Failed to load game. Please check the Game ID.");
-            }
-        }
-
-        loadGame();
-    </script>
-
-</body>
+    <body>
+        <iframe src="https://pitportfolio.z6.web.core.windows.net/overworld" allow="fullscreen"></iframe>
+    </body>
 </html>
