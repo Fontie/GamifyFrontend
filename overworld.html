@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-
-<script src="env.js"></script>
-
 <html lang="en">
 <head>
+    <script src="env.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overworld</title>
     <style>
-        #game-container {
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #game-frame {
             position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            border: none; 
-            background: #f0f0f0; 
+            border: none;
+            background: #f0f0f0;
+            box-sizing: border-box;
         }
     </style>
 </head>
-    <body>
-        <script>
-            const iframe = document.getElementById("game-frame");
-            const playerNameFromStor = localStorage.getItem('userName');
+<body>
+    <a href="leaderboard.html">Leaderboard!</a>
+    <iframe
+        id="game-frame"
+        src="https://pitportfolio.z6.web.core.windows.net/overworld/index.html"
+        allow="fullscreen"
+    ></iframe>
 
-            iframe.onload = () => {
+    <script>
+        const iframe = document.getElementById("game-frame");
+        const playerNameFromStor = localStorage.getItem('userName');
+
+        iframe.onload = () => {
             iframe.contentWindow.postMessage({ api: window.env.API_URL }, "*");
             iframe.contentWindow.postMessage({ playerName: playerNameFromStor }, "*");
-            };
-        </script>
-        <iframe id ="" src="https://pitportfolio.z6.web.core.windows.net/overworld" allow="fullscreen"></iframe>
-    </body>
+        };
+    </script>
+</body>
 </html>
