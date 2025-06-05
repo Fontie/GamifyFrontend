@@ -1,86 +1,105 @@
 <!DOCTYPE html>
-
-<script src="env.js"></script>
-
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Login</title>
+  <script src="env.js"></script>
+  <style>
+    :root {
+      --primary: #0077cc;
+      --primary-dark: #005fa3;
+      --bg-gradient: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-gradient);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem; /* space between stacked elements */
+    }
+
+    /* Re‑usable card wrapper */
+    .card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      min-width: 300px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* space between children */
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    button,
+    .button-class {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none; /* make <a> look like a button */
+      transition: background-color 0.3s;
+    }
+
+    button:hover,
+    .button-class:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* Welcome name styling */
+    #welcome span {
+      font-weight: bold;
+      color: var(--primary);
+    }
+  </style>
 </head>
 <body>
-  <div id="loginForm">
+  <!-- Login panel -->
+  <div id="loginForm" class="card">
     <input type="text" id="nameInput" placeholder="Enter your name" />
     <button onclick="login()">Login</button>
   </div>
-  <div id="welcome" style="display:none;">
-    Welcome, <span id="userName"></span>!
+
+  <!-- Welcome panel (hidden until login) -->
+  <div id="welcome" class="card" style="display:none;">
+    <p>Welcome, <span id="userName"></span>!</p>
+    <a href="overworld.html" class="button-class">To Overworld</a>
+    <button onclick="logout()">Logout</button>
   </div>
 
-  <button onclick="logout()">Logout</button>
-  <br>
-   <a href="overworld.html" class="button-class">to overworld</a>
-
-  <style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-
-  #loginForm, #welcome {
-    background: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    min-width: 300px;
-    text-align: center;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-  }
-
-  input[type="text"]:focus {
-    border-color: #0077cc;
-    outline: none;
-  }
-
-  button {
-    padding: 0.75rem 1.5rem;
-    background-color: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  button:hover {
-    background-color: #005fa3;
-  }
-
-  span#welcomeName {
-    font-weight: bold;
-    color: #0077cc;
-  }
-</style>
-
-
   <script>
-    const API_URL = window.env.API_URL+"/api/score/login"; // Adjust if hosted differently
+    const API_URL = window.env.API_URL + "/api/score/login"; // Adjust if hosted differently
 
     function login() {
-      const name = document.getElementById('nameInput').value;
+      const name = document.getElementById('nameInput').value.trim();
+      if (!name) return; // Do not submit empty names
+
       fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -96,14 +115,13 @@
     }
 
     function logout() {
-  localStorage.removeItem('userName');
-  location.reload(); // Simple way to reset the UI
-}
-
+      localStorage.removeItem('userName');
+      location.reload(); // Simple way to reset the UI
+    }
 
     function showWelcome(name) {
       document.getElementById('loginForm').style.display = 'none';
-      document.getElementById('welcome').style.display = 'block';
+      document.getElementById('welcome').style.display = 'flex';
       document.getElementById('userName').innerText = name;
     }
 
