@@ -94,13 +94,11 @@
   </div>
 
   <script>
-    const API_URL = window.env.API_URL + "/api/score/login"; // Adjust if hosted differently
-
     function login() {
       const name = document.getElementById('nameInput').value.trim();
       if (!name) return; // Do not submit empty names
 
-      fetch(API_URL, {
+      fetch(window.env.API_URL + "/api/score/login", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Name: name })
