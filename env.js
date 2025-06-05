@@ -1,3 +1,3 @@
 window.env = {
-  API_URL: 'https://localhost:5138'
+  API_URL: 'https://playground.interactievetechnologie.nl'
 };
