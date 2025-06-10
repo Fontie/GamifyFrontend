@@ -119,14 +119,15 @@ submitBtn.addEventListener('click', function () {
     loadQuiz();
     } else {
         // Build the data to send
+
         const scoreData = {
             gameName: "Test",        // Replace with actual game name if dynamic
-            playerName: "LeeroyJankins",     // Replace with actual player name (maybe from a login system)
+            playerName: localStorage.getItem("userName"),     // Replace with actual player name (maybe from a login system)
             Score: Math.round((score / 7) * 100)               // The user's final score
         };
 
         // Send POST request to backend
-        fetch(window.env.API_URL+"/api/score/submit", {
+        fetch(window.env.API_URL+"/api/Score/submit", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
