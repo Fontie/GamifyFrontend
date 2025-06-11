@@ -126,6 +126,8 @@ submitBtn.addEventListener('click', function () {
             Score: Math.round((score / 7) * 100)               // The user's final score
         };
 
+        console.log(scoreData);
+
         // Send POST request to backend
         fetch(window.env.API_URL+"/api/Score/submit", {
             method: "POST",
