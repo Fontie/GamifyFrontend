@@ -120,13 +120,13 @@ submitBtn.addEventListener('click', function () {
     } else {
         // Build the data to send
 
-        const scoreData = {
+        const ScoreData = {
+            gameName: "overworld",     
             playerName: localStorage.getItem("userName"), 
-            gameName: "TestLevel",        
             Score: Math.round((score / 7) * 100)               // The user's final score
         };
 
-        console.log(scoreData);
+        console.log(ScoreData);
 
         // Send POST request to backend
         fetch(window.env.API_URL+"/api/Score/submit", {
@@ -134,7 +134,7 @@ submitBtn.addEventListener('click', function () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(scoreData)
+            body: JSON.stringify(ScoreData)
         })
         .then(response => {
             if (!response.ok) {
