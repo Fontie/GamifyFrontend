@@ -121,8 +121,8 @@ submitBtn.addEventListener('click', function () {
         // Build the data to send
 
         const scoreData = {
-            gameName: "Test",        // Replace with actual game name if dynamic
-            playerName: localStorage.getItem("userName"),     // Replace with actual player name (maybe from a login system)
+            playerName: localStorage.getItem("userName"), 
+            gameName: "Test",        
             Score: Math.round((score / 7) * 100)               // The user's final score
         };
 
