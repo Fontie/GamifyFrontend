@@ -122,7 +122,7 @@ submitBtn.addEventListener('click', function () {
 
         const scoreData = {
             playerName: localStorage.getItem("userName"), 
-            gameName: "Test",        
+            gameName: "TestLevel",        
             Score: Math.round((score / 7) * 100)               // The user's final score
         };
 
