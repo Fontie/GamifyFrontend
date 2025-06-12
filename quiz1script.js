@@ -121,34 +121,42 @@ submitBtn.addEventListener('click', function () {
         // Build the data to send
 
         const ScoreData = {
-            gameName: "overworld",     
+            gameName: "quiz1",     
             playerName: localStorage.getItem("userName"), 
             Score: Math.round((score / 7) * 100)               // The user's final score
         };
 
         console.log(ScoreData);
 
-       fetch(window.env.API_URL + "/api/Score/submit", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(ScoreData)
-            })
-            .then(async response => {
-                if (!response.ok) {
-                    const errorText = await response.text(); // extract actual message
-                    throw new Error(errorText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data.message);
-            })
-            .catch(error => {
-                console.error("Error submitting score:", error.message);
-                alert("Error submitting score:\n" + error.message); // show backend error
-            });
+        // Send POST request to backend
+        fetch(window.env.API_URL+"/api/Score/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(ScoreData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.message);
+            quiz.innerHTML = `
+                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                <button onclick="window.close()">Return</button>
+            `;
+        })
+        .catch(error => {
+            console.error("Error submitting score:", error);
+            quiz.innerHTML = `
+                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                <p style="color: red;">Failed to submit score.</p>
+                <button onclick="window.close()">Return</button>
+            `;
+        });
     }
     
     }
