@@ -129,7 +129,7 @@ submitBtn.addEventListener('click', function () {
         console.log(ScoreData);
 
         // Send POST request to backend
-        fetch(window.env.API_URL+"/api/Score/submit", {
+        fetch(window.env.API_URL+"/api/score/submit", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
