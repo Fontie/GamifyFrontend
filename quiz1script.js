@@ -126,9 +126,9 @@ submitBtn.addEventListener('click', function () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                gameName: "quiz1",
-                playerName: localStorage.getItem("userName"),
-                Score: Math.round((score / 7) * 100)  
+                "gameName": "quiz1",
+                "playerName": localStorage.getItem("userName"),
+                "Score": Math.round((score / 7) * 100)  
             })
         })
         .then(response => {
