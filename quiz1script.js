@@ -120,12 +120,6 @@ submitBtn.addEventListener('click', function () {
     } else {
         // Build the data to send
 
-        const ScoreData = {
-            gameName: "quiz1",     
-            playerName: localStorage.getItem("userName"), 
-            Score: Math.round((score / 7) * 100)               // The user's final score
-        };
-
         console.log(ScoreData);
 
         // Send POST request to backend
@@ -134,7 +128,11 @@ submitBtn.addEventListener('click', function () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(ScoreData)
+            body: JSON.stringify({
+                gameName: "quiz1",
+                playerName: localStorage.getItem("userName"),
+                Score: Math.round((score / 7) * 100)  
+            })
         })
         .then(response => {
             if (!response.ok) {
