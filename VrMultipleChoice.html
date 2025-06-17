@@ -27,24 +27,15 @@
     </style>
 </head>
 <body>
-    <iframe
-        id="game-frame"
-        allowvr="yes"
-        allowxr="yes"
-        allowar="yes"
-        allowfullscreen="yes"
-        src="https://pitportfolio.z6.web.core.windows.net/yondas-quest/VRmultipleChoice/index.html"
-        allow="fullscreen"
-    ></iframe>
+    
 
     <script>
-        const iframe = document.getElementById("game-frame");
-        const playerNameFromStor = localStorage.getItem('userName');
+        const playerName = localStorage.getItem('userName');
+        const apiUrl = window.env.API_URL;
 
-        iframe.onload = () => {
-            iframe.contentWindow.postMessage({ api: window.env.API_URL }, "*");
-            iframe.contentWindow.postMessage({ playerName: playerNameFromStor }, "*");
-        };
+        const targetUrl = `https://pitportfolio.z6.web.core.windows.net/yondas-quest/VRmultipleChoice/index.html?playerName=${encodeURIComponent(playerName)}&api=${encodeURIComponent(apiUrl)}`;
+
+        window.location.href = targetUrl;
     </script>
 </body>
 </html>
