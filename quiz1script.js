@@ -133,6 +133,7 @@ submitBtn.addEventListener('click', function () {
         })
         .then(response => {
             if (!response.ok) {
+                console.log(response);
                 throw new Error(response);
             }
             return response.json();
