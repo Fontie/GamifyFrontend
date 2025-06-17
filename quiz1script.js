@@ -119,9 +119,6 @@ submitBtn.addEventListener('click', function () {
     loadQuiz();
     } else {
         // Build the data to send
-
-        console.log(ScoreData);
-
         // Send POST request to backend
         fetch(window.env.API_URL+"/api/score/submit", {
             method: "POST",
