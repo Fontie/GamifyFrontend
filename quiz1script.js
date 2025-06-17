@@ -120,6 +120,9 @@ submitBtn.addEventListener('click', function () {
     } else {
         // Build the data to send
         // Send POST request to backend
+        console.log(localStorage.getItem("userName"));
+        console.log(Math.round((score / 7) * 100)  );
+
         fetch(window.env.API_URL+"/api/score/submit", {
             method: "POST",
             headers: {
