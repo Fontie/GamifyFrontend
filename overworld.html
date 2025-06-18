@@ -54,13 +54,14 @@
 
     <script>
         const iframe = document.getElementById("game-frame");
-        const playerNameFromStor = localStorage.getItem('userName');
+
+        console.log(localStorage.getItem('userName'));
 
         iframe.onload = () => {
         iframe.contentWindow.postMessage(
             {
                 //api: "https://playground.interactievetechnologie.nl", // Or from env if defined
-                playerName: playerNameFromStor
+                playerName: localStorage.getItem('userName')
             },
         );
     };
