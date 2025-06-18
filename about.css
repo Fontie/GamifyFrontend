@@ -204,12 +204,6 @@ html {
 
 /* PAUSE ANIMATION */
 
-/* .home-content:hover .aboutPic .img6 {
-    animation-play-state: paused;
-    height: 260px;
-    transition: 0.4s ease-in-out;
-} */
-
 .aboutPic img {
     height: 200px; /* original size */
     animation: scroll 5s linear infinite;
@@ -271,18 +265,9 @@ html {
         gap: 7.5rem;
     }
 
-    /* .stake-item {
-        min-height: 350px;
-        max-width: 530px;
-    } */
       
 }
 
-/* @media (min-width: 1450px) {
-    .home-content img{
-        height: 225px;
-    }
-} */
 
 
 .home h1,
@@ -413,21 +398,6 @@ html {
     font-size: 8rem;
     text-align: center;
     margin: 5rem 0;
-    /* try button */
-    /* display: inline-block;
-    padding: 1rem 2.8rem;
-    background: linear-gradient(to right, #4F3FFD, #261E77);
-    box-shadow: #4F3FFD;
-    border-radius: 4rem;
-    font-size: 1.6rem;
-    border: 2px solid transparent;
-    letter-spacing: 0.1rem;
-    font-weight: 600;
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    color: white; */
 }
 
 .games-box img {
@@ -448,7 +418,6 @@ html {
     min-height: 450px;
     max-width: 350px;
     background: #F5F5F5;
-    /* border: 3px solid rgba(238, 238, 238, 0.2); */
     border-radius: 2rem;
     margin: 0 2rem;
     padding: 30px 60px;
@@ -471,7 +440,9 @@ html {
     font-size: 2, 8rem;
 }
 .game-item p {
-    font-size: 1.3rem;
+    font-size: 14px;
+    font-weight: 300;
+    
 }
 
 /*STAKE HOLDERS INFO*/
@@ -483,13 +454,6 @@ html {
     margin-top: 15rem;
 }
 
-/* .stakeholder .heading {
-    margin-bottom: 5rem;
-    font-size: 4rem;
-    text-align: center;
-    margin: 5rem 0;
-    
-} */
 
 .stakeholder{
     margin-bottom: 65px;
@@ -576,17 +540,6 @@ html {
 /* ALL CONTACT INFO AND VIDEO */
 
 
-/* .us{
-    display: flex;
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: #e1e0e0;
-    margin: 0;
-    padding: 30px 60px;
-}  */
 
 .us {
     display: flex;
@@ -607,14 +560,6 @@ html {
     
 }
 
-/* .our-wrapper {
-    display: flex;
-   
-    gap: 10rem; 
-    align-items: center;
-    justify-content: center;
-} */
-
 .All-contacts{
     height: 55vh;
     width: 42vw;
@@ -628,25 +573,13 @@ html {
     padding: 30px;
 }
 
-/* .All-contacts {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    text-align: center;
-} */
-  
 
 .All-contacts .Contacts {
-    /* display: flex;
-    flex-direction: column; */
     line-height: 2.5;
 }
 
 .All-contacts:hover {
     background: var(--main-color);
-    /* background: #fc7060; */
     color: white;
 }
 
@@ -689,22 +622,22 @@ html {
 
 .green {
     width: 45%;
-    height: 30px;
+    height: 40px;
     background-color: #81fbad;
 }
 
 .red{
     width: 40%;
-    height: 30px;
+    height: 40px;
     background-color: var(--main-color);
-    bottom: -30px;
+    bottom: -40px;
     z-index: 10;
     position: relative;
 }
 
 .purple{
     width: 15%;
-    height: 30px;
+    height: 40px;
     background-color: #847DFF;
 }
 
