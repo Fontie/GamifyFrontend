@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hall of Fame</title>
+<style>
+  #hallOfFame {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .badge-container {
+    text-align: center;
+    margin: 10px;
+  }
+  .badge-container img {
+    width: 100px;
+    display: block;
+    margin-bottom: 5px;
+  }
+</style>
+</head>
+<body>
+<p id="result"></p>
+
+<script src="/env.js"></script>
+<div id="hallOfFame"></div>
+
+<script>
+  async function loadHallOfFame(userName) {
+   
+    try {
+      const response = await fetch(window.env.API_URL + `/api/badge/halloffame/${userName}`);
+      if (!response.ok) {
+        throw new Error("Failed to load badges: " + response.statusText);
+      }
+      const badges = await response.json();
+
+      const container = document.getElementById("hallOfFame");
+      container.innerHTML = "";
+
+      badges.forEach(badge => {
+        const badgeDiv = document.createElement("div");
+        badgeDiv.className = "badge-container";
+
+        const img = document.createElement("img");
+        img.src = `data:image/png;base64,${badge.image}`;
+        img.alt = badge.name;
+        img.title = badge.name;
+
+        const label = document.createElement("div");
+        label.textContent = badge.Name;
+
+        badgeDiv.appendChild(img);
+        badgeDiv.appendChild(label);
+        container.appendChild(badgeDiv);
+
+        console.log(badges);
+      });
+    } catch (err) {
+      document.getElementById("result").textContent = "Error loading badges: " + err.message;
+    }
+  }
+
+  // Example usage:
+  loadHallOfFame(localStorage.getItem('userName'));
+</script>
+
+</body>
+</html>

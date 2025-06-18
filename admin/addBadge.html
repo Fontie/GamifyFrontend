@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Create Badge</title>
+</head>
+<body>
+
+<h1>Create a New Badge</h1>
+
+<form id="badgeForm">
+  <label>
+    Badge Name:<br />
+    <input type="text" id="badgeName" name="name" required />
+  </label>
+  <br /><br />
+
+  <label>
+    Badge Image:<br />
+    <input type="file" id="badgeImage" name="image" accept="image/*" required />
+  </label>
+  <br /><br />
+
+  <label>
+    Badge Empty Image:<br />
+    <input type="file" id="badgeImageEmpty" name="imageempty" accept="image/*" required />
+  </label>
+  <br /><br />
+
+  <button type="submit">Create Badge</button>
+</form>
+
+<p id="result"></p>
+
+<script src="/env.js"></script>
+<script>
+  document.getElementById("badgeForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(window.env.API_URL + '/api/badge/add', {
+        method: 'POST',
+        body: formData
+      });
+
+      const resultText = await response.text();
+
+      if (response.ok) {
+        document.getElementById("result").textContent = "Badge created successfully!";
+        form.reset();
+      } else {
+        document.getElementById("result").textContent = "Error: " + resultText;
+      }
+    } catch (err) {
+      document.getElementById("result").textContent = "Error: " + err.message;
+    }
+  });
+</script>
+
+</body>
+</html>
