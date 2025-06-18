@@ -120,20 +120,48 @@ submitBtn.addEventListener('click', function () {
     } else {
         const username = localStorage.getItem("userName");
 
+        async function giveBadgeToUser(userName, badgeName) {
+   
+                const payload = {
+                    "user_name": userName,
+                    "badge_name": badgeName
+                  };
+
+                  try {
+                    const response = await fetch(window.env.API_URL + '/api/badge/give', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                      const message = await response.text();
+                      console.log('Success:', message);
+                    } else {
+                      const errorText = await response.text();
+                      console.error('Error:', errorText);
+                    }
+                  } catch (err) {
+                    console.error('Fetch error:', err);
+                  }
+                }
+
         giveBadgeToUser(username, "level2");
 
         const calculatedScore = Math.round((score / 7) * 100);
 
         // Check score thresholds and assign badges accordingly
         if (calculatedScore >= 100) {
-        window.giveBadgeToUser(username, "level2_100");
+        giveBadgeToUser(username, "level2_100");
         } 
         if (calculatedScore >= 80) {
-        window.giveBadgeToUser(username, "level2_80");
+        giveBadgeToUser(username, "level2_80");
         } 
         if (calculatedScore >= 50) 
         {
-        window.giveBadgeToUser(username, "level2_50");
+        giveBadgeToUser(username, "level2_50");
         }
 
 

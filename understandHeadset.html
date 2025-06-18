@@ -60,7 +60,35 @@
             try {
                 // Example: Game ID is hardcoded here, but it can be dynamic
 
-                window.giveBadgeToUser(userName, "level1");
+                async function giveBadgeToUser(userName, badgeName) {
+   
+                const payload = {
+                    "user_name": userName,
+                    "badge_name": badgeName
+                  };
+
+                  try {
+                    const response = await fetch(window.env.API_URL + '/api/badge/give', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                      const message = await response.text();
+                      console.log('Success:', message);
+                    } else {
+                      const errorText = await response.text();
+                      console.error('Error:', errorText);
+                    }
+                  } catch (err) {
+                    console.error('Fetch error:', err);
+                  }
+                }
+
+                giveBadgeToUser(userName,"level1");
                 
                 // Send GET request to backend
                 const response = await fetch(window.env.API_URL+`/api/overworld/increaseAccess/${userName}`, {
