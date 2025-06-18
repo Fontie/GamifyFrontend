@@ -205,7 +205,7 @@ html {
 /* PAUSE ANIMATION */
 
 .aboutPic img {
-    height: 200px; /* original size */
+    height: 200px; 
     animation: scroll 5s linear infinite;
     transition: 0.4s ease-in-out;
 }
@@ -437,11 +437,11 @@ html {
   }
 
 .game-item h2 {
-    font-size: 2, 8rem;
+    font-size: 2, 9rem;
 }
 .game-item p {
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     
 }
 
