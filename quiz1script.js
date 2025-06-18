@@ -118,10 +118,24 @@ submitBtn.addEventListener('click', function () {
        if (currentQuiz < quizData.length) {
     loadQuiz();
     } else {
-        // Build the data to send
-        // Send POST request to backend
-        console.log(localStorage.getItem("userName"));
-        console.log(Math.round((score / 7) * 100)  );
+        const username = localStorage.getItem("userName");
+
+        giveBadgeToUser(username, "level2");
+
+        const calculatedScore = Math.round((score / 7) * 100);
+
+        // Check score thresholds and assign badges accordingly
+        if (calculatedScore >= 100) {
+        giveBadgeToUser(username, "level2_100");
+        } 
+        if (calculatedScore >= 80) {
+        giveBadgeToUser(username, "level2_80");
+        } 
+        if (calculatedScore >= 50) 
+        {
+        giveBadgeToUser(username, "level2_50");
+        }
+
 
         fetch(window.env.API_URL+"/api/score/submit", {
             method: "POST",
@@ -130,8 +144,8 @@ submitBtn.addEventListener('click', function () {
             },
             body: JSON.stringify({
                 "gameName": "quiz1",
-                "playerName": localStorage.getItem("userName"),
-                "Score": Math.round((score / 7) * 100)  
+                "playerName": username,
+                "Score": calculatedScore
             })
         })
         .then(response => {

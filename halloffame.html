@@ -12,13 +12,20 @@
   .badge-container {
     text-align: center;
     margin: 10px;
+    width: 120px;
   }
   .badge-container img {
     width: 100px;
     display: block;
-    margin-bottom: 5px;
+    margin: 0 auto 5px; 
+  }
+  .badge-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
   }
 </style>
+<h1>Hall of fame</h1>
 </head>
 <body>
 <p id="result"></p>
@@ -49,14 +56,14 @@
         img.title = badge.name;
 
         const label = document.createElement("div");
-        label.textContent = badge.Name;
+        label.className = "badge-name";
+        label.textContent = badge.name;
 
         badgeDiv.appendChild(img);
         badgeDiv.appendChild(label);
         container.appendChild(badgeDiv);
-
-        console.log(badges);
       });
+
     } catch (err) {
       document.getElementById("result").textContent = "Error loading badges: " + err.message;
     }
