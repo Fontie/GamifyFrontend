@@ -2,7 +2,7 @@ window.env = {
   API_URL: ''
 };
 
-async function giveBadgeToUser(userName, badgeName) {
+window.giveBadgeToUser = async function(userName, badgeName) {
    
   const payload = {
       "user_name": userName,
