@@ -52,20 +52,22 @@
         allow="fullscreen"
     ></iframe>
 
-    <script>
-        const iframe = document.getElementById("game-frame");
+        <script>
+            const iframe = document.getElementById("game-frame");
+            const playerName = localStorage.getItem("userName");
 
-        console.log(localStorage.getItem('userName'));
-
-        iframe.onload = () => {
-        iframe.contentWindow.postMessage(
+            // Wait for the iframe to say it's ready
+            window.addEventListener("message", (event) => 
             {
-                //api: "https://playground.interactievetechnologie.nl", // Or from env if defined
-                playerName: localStorage.getItem('userName')
-            },
-        );
-    };
+                if (event.data?.call === "iframeReady") {
+                iframe.contentWindow.postMessage(
+                    { call: "sendPlayerName", value: playerName },
+                    "https://pitportfolio.z6.web.core.windows.net"
+                );
+                }
+            });
     </script>
+
 
 </body>
 </html>
