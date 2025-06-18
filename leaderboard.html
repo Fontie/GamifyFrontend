@@ -55,13 +55,35 @@
     font-size: 16px;
     cursor: pointer;
   }
+
+  .button-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+   .button-container a:hover {
+            background-color: #0056b3;
+        }
 </style>
 
 </head>
 <body>
-    <button id="backButton" onclick="goBack()">Back</button>
+    <div class="button-container">
+        <a href="overworld.html">Back to overworld</a>
+    </div>
   <h1>Leaderboard</h1>
-  <a href="overworld.html">Back to overworld</a>
+  
   <table id="leaderboard">
     <thead>
       <tr>

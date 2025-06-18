@@ -61,6 +61,7 @@
                 // Example: Game ID is hardcoded here, but it can be dynamic
 
                 window.giveBadgeToUser(userName, "level1");
+                
                 // Send GET request to backend
                 const response = await fetch(window.env.API_URL+`/api/overworld/increaseAccess/${userName}`, {
                     method: 'POST',   // Ensure the POST method is being used

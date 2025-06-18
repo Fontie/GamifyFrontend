@@ -126,14 +126,14 @@ submitBtn.addEventListener('click', function () {
 
         // Check score thresholds and assign badges accordingly
         if (calculatedScore >= 100) {
-        giveBadgeToUser(username, "level2_100");
+        window.giveBadgeToUser(username, "level2_100");
         } 
         if (calculatedScore >= 80) {
-        giveBadgeToUser(username, "level2_80");
+        window.giveBadgeToUser(username, "level2_80");
         } 
         if (calculatedScore >= 50) 
         {
-        giveBadgeToUser(username, "level2_50");
+        window.giveBadgeToUser(username, "level2_50");
         }
 
 
