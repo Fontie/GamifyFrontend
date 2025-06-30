@@ -1,55 +1,604 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Headset info</title>
-  <style>
-    canvas {
-      border: 1px solid #ccc;
-      display: block;
-      margin: 20px auto;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta Quest 3 Manual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="metaQuest.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li class="logo"><img alt="" src="images/meta-3.svg"></li>
+        <li><a href="#prep-safety"><i class="fa fa-shield"></i> &nbsp; preparation & safety</a></li>
+        <li><a href="#basic-settings"><i class="fa fa-sliders"></i> &nbsp; basic settings</a></li>
+        <li><a href="#power-cycle"><i class="fa fa-power-off"></i> &nbsp; power on/off</a></li>
+        <li><a href="#controllers"><i class="fa fa-gamepad"></i> &nbsp; controllers</a></li>
+        <li><a href="#app-launch"><i class="fa fa-play-circle"></i> &nbsp; apps</a></li>
+        <li><a href="#guardian"><i class="fa fa-arrows-alt"></i> &nbsp; guardian</a></li>
+        <li><a href="#connectivity"><i class="fa fa-wifi"></i> &nbsp; connectivity</a></li>
+        <li><a href="#privacy"><i class="fa fa-lock"></i> &nbsp; privacy</a></li>
+        <li><a href="#gestures"><i class="fa fa-hand-paper-o"></i> &nbsp; gestures</a></li>
+        <li><a href="#faq"><i class="fa fa-question-circle"></i> &nbsp; faq</a></li>
+      </ul>
+    </nav>
+  
+    <div class="wrapper">
 
-  <!--<canvas id="pdf-canvas"></canvas>-->
-  <div id="pdf-container"></div>
+    <main>
 
-  <!-- PDF.js from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+      <header>
+        <h1>Manual Meta Quest 3</h1>
+      </header>
+      
+      <section id="prep-safety">
+        <h2>Preparation and safety instructions</h2>
+        <p>
+          Good preparation is important for a comfortable and safe VR
+          experience.
+        </p>
 
-  <script>
-    const url = "ManualPDF.pdf"; // Local PDF file
+        <h3>1. Preparing your space</h3>
+        <ul>
+          <li>
+            Provide a clear, well-lit area free of obstacles on the floor or
+            nearby (such as furniture, pets, or objects).
+          </li>
+          <li>
+            Make sure there is enough space, especially when using Roomscale, so
+            that you can move around safely.
+          </li>
+          <li>
+            Virtual boundaries help you stay in your activity space to avoid
+            collisions with objects in the physical world while you are in your
+            virtual environment.
+          </li>
+          <div class="image1"><img src="images/space.png" alt="space"></div>
+        </ul>
 
-    const container = document.getElementById('pdf-container');
+        <h3>2. Health and safety</h3>
+        <ul>
+          <li>
+            VR can cause dizziness or fatigue. Take frequent breaks, especially
+            during long sessions. Start with a maximum usage period of 30
+            minutes, and then take a break of 15 minutes.
+          </li>
+          <div class="image"><img src="images/image2.png" alt=""></div>
+          <li>
+            Beware of “VR nausea” (motion sickness) with intense games. Start
+            with less intense experiences if you are prone to nausea.
+          </li>
+          <li>
+            If you wear glasses, wear a suitable glasses-insert if necessary, or
+            adjust the headset for the correct fit.
+          </li>
+          <div class="image"><img src="images/image3.png" alt=""></div>
+        </ul>
 
-    pdfjsLib.getDocument(url).promise.then(pdf => {
-      const totalPages = pdf.numPages;
+        <h3>3. Display comfort ratings:</h3>
+        <p>
+          The Meta Quest Store features comfort ratings that help you understand
+          how comfortable an app is to use and how likely it is to cause motion
+          sickness, depending on your needs and level of experience with virtual
+          content.
+        </p>
+        <ul>
+          <li>
+            <strong>Comfortable:</strong> Comfort experiences generally avoid
+            camera movement, player movement, or disorienting content and
+            effects.
+          </li>
+          <li>
+            <strong>Average:</strong> Average experiences may contain some
+            camera movement, player movement, or occasionally disorienting
+            content and effects.
+          </li>
+          <li>
+            <strong>Intense:</strong> Intense experiences involve significant
+            camera movement, player movement, or disorienting content and
+            effects.
+          </li>
+          <li>
+            <strong>Not classified:</strong> Unclassified experiences are not
+            rated, but may contain intense content.
+          </li>
+        </ul>
+        <p>
+          If you experience motion sickness, dizziness, or other negative
+          effects, discontinue the experience and try another experience that is
+          appropriate for your comfort level.
+        </p>
 
-      for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
-        pdf.getPage(pageNumber).then(page => {
-          const viewport = page.getViewport({ scale: 1.5 });
+        <h3>4. Setting the Eye distance (IPD)</h3>
+        <ul>
+          <li>
+            The Quest 3 has an adjustable IPD (Interpupillary Distance) so that
+            the lenses are properly adjusted to the distance between your eyes.
+          </li>
+          <li>
+            Adjust the IPD using the slider on the bottom of the headset until
+            the image is sharp and comfortable.
+          </li>
+          <div class="image"><img src="images/image4.png" alt=""></div>
+        </ul>
+      </section>
 
-          const canvas = document.createElement('canvas');
-          canvas.className = 'pdf-page';
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          container.appendChild(canvas);
+      <!-- 2. Basic Settings for Comfort & Image Quality -->
+      <section id="basic-settings">
+        <h2>Basic settings for comfort and image quality</h2>
+        <p>
+          There are a few adjustments that make the VR experience more
+          enjoyable, especially for beginners.
+        </p>
 
-          const context = canvas.getContext('2d');
-          page.render({ canvasContext: context, viewport: viewport });
-        });
-      }
-    }).catch(err => {
-      console.error("PDF loading error:", err);
-    });
-  </script>
+        <h3>1. Adjust Brightness and Volume</h3>
+        <ul>
+          <li>
+            Adjust the brightness of the image for comfortable viewing,
+            especially in different lighting conditions.
+          </li>
+          <li>
+            Use the volume buttons on the side of the headset to adjust the
+            sound level.
+          </li>
+          <div class="image"><img src="images/image5.png" alt=""></div>
+        </ul>
 
-    <!-- Button to send request to backend -->
+        <h3>2. Enable Virtual Hand Tracking (optional)</h3>
+        <ul>
+          <li>
+            The Quest 3 supports hand tracking as an alternative to the
+            controllers, which can be useful for simple interactions and
+            navigation.
+          </li>
+          <li>
+            Hand tracking can be activated via
+            <code>Settings &gt; Devices &gt; Hands &amp; Controllers</code>.
+          </li>
+        </ul>
+
+        <h3>3. Adjust Fit and Comfort</h3>
+        <ul>
+          <li>
+            Make sure the headband fits snugly to reduce pressure on your face
+            and head. The Quest 3 offers an adjustable strap that you can adjust
+            for optimal fit and comfort.
+          </li>
+          <div class="image"><img src="images/image6.png" alt=""></div>
+        </ul>
+
+        <p><strong>Important:</strong></p>
+        <ul>
+          <li>
+            Sunlight can cause permanent damage to the lenses, do not use
+            outdoors.
+          </li>
+          <li>
+            Do not use alcohol wipes to clean the headset, as this can damage
+            the headset. Instead, you can use non-alcoholic, antibacterial
+            wipes.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3. Switching the Headset On & Off -->
+      <section id="power-cycle">
+        <h2>Switching the headset on and off:</h2>
+
+        <div class="image"><img src="images/image7.png" alt=""></div>
+
+        <h3>Power On</h3>
+        <ol>
+          <li>
+            Charge: Make sure your Meta Quest 3 is fully charged before you
+            begin.
+          </li>
+          <li>
+            Power On: Press and hold the power button on the side of the headset
+            until you see the Meta logo on the screen. The headset will then
+            power on.
+          </li>
+        </ol>
+
+        <h3>Power off</h3>
+        <ol>
+          <li>
+            Power off: Press the power button until a menu appears on the
+            screen.
+          </li>
+          <li>Confirm: Select the Power off option and confirm.</li>
+        </ol>
+
+        <p>
+          <strong>Tip:</strong> You can also put the Quest to sleep by briefly
+          pressing the power button. This saves battery when you are not using
+          the headset for a while.
+        </p>
+        <div class="image8"><img src="images/image8.png" alt=""></div>
+      </section>
+
+      <!-- 4. Controllers & Button Functions -->
+      <section id="controllers">
+        <h2>Using the Controllers and Button Functions:</h2>
+
+        <p>
+          The Meta Quest 3 controllers are equipped with buttons and sensors to
+          accurately track your movements. They work together with the headset
+          to create an immersive VR experience.
+        </p>
+
+        <p>
+          <strong
+            >Don't drop the controllers, use the strings to hold the
+            controllers.</strong
+          >
+        </p>
+
+        <h3>Controller Layout</h3>
+        <p>
+          Each hand has its own controller: a right controller and a left
+          controller. They both have similar buttons, with some specific
+          functions for each hand. Start with the left controller, press the
+          button with the 3 lines. Then on the right controller, press the
+          button with the “meta” symbol.
+        </p>
+
+        <div class="image9"><img src="images/image9.png" alt=""></div>
+
+        <h3>Buttons and their Functions:</h3>
+        <div class="image"><img src="images/image10.png" alt=""></div>
+
+        <h4>Left Controller:</h4>
+        <ul>
+          <li>
+            <strong>1. Trigger button (back)</strong><br />
+            <strong>Function:</strong> This button is located on the back and is
+            usually operated with the index finger.<br />
+            <strong>Usage:</strong> The trigger button is often used to select,
+            shoot or grab in games.
+          </li>
+          <div class="image"><img src="images/image11.png" alt=""></div>
+          <li>
+            <strong>2. Grip button (side)</strong><br />
+            <strong>Function:</strong> Located on the side of the controller,
+            this is operated with the middle finger.<br />
+            <strong>Use:</strong> In many apps and games, you use the grip
+            button to hold or drop objects.
+          </li>
+          <div class="image"><img src="images/image12.png" alt=""></div>
+          <li>
+            <strong>3. Thumbstick (joystick)</strong><br />
+            <strong>Function:</strong> Each controller has a joystick on top,
+            which you use to move and navigate.<br />
+            <strong>Use:</strong> Press the joystick to activate extra options
+            in a game, such as jumping or running.
+          </li>
+          <li>
+            <strong>4. A and B buttons</strong><br />
+            <strong>Function:</strong> These buttons are located on the top right
+             of the right controller.<br />
+            <strong>Usage:</strong> They are used to confirm actions, such as selecting
+            and opening menus. Each game has its own functions of thses buttons. 
+          </li>
+          <div class="image"><img src="images/image13.png" alt=""></div>
+          <li>
+            <strong>5. X and Y buttons</strong><br />
+            <strong>Function:</strong> The left controller has X and Y buttons,
+            which are often used for additional interactions.<br />
+            <strong>Usage:</strong> In most games and apps, these buttons are
+            used to go back, reload, or perform other functions.
+          </li>
+
+          <div class="image"><img src="images/image14.png" alt=""></div>
+          <li>
+            <strong>6. Mata Button</strong><br />
+            <strong>Function:</strong> This is located under the joystick of the right
+            controller.<br />
+            <strong>Usage:</strong> Press the Meta button to open tghe menu or go the Home screen.
+            Hold this button to re-center the image.
+          </li>
+
+          <div class="image"><img src="images/image15.png" alt=""></div>
+          <li>
+            <strong>7. Menu button</strong><br />
+            <strong>Function:</strong> This is located under the joystick of the
+            left controller.<br />
+            <strong>Use:</strong> The menu button often opens the settings menu
+            or pauses the game. In some apps, you can open the game menu with
+            it.
+          </li>
+        </ul>
+
+        <h4>Right Controller:</h4>
+        <ul>
+          <li>
+            <strong>1. Trigger button (back)</strong><br />
+            <strong>Function:</strong> This button is located on the back and is
+            usually operated with the index finger.<br />
+            <strong>Usage:</strong> The trigger button is often used to select,
+            shoot or grab in games.
+          </li>
+          <li>
+            <strong>2. Grip button (side)</strong><br />
+            <strong>Function:</strong> Located on the side of the controller,
+            this is operated with the middle finger.<br />
+            <strong>Use:</strong> In many apps and games, you use the grip
+            button to hold or drop objects.
+          </li>
+          <li>
+            <strong>3. Thumbstick (joystick)</strong><br />
+            <strong>Function:</strong> Each controller has a joystick on top,
+            which you use to move and navigate.<br />
+            <strong>Use:</strong> Press the joystick to activate extra options
+            in a game, such as jumping or running.
+          </li>
+          <li>
+            <strong>4. A and B buttons</strong><br />
+            <strong>Function:</strong> These buttons are located on the top
+            right of the right controller.<br />
+            <strong>Use:</strong> They are used to confirm actions, such as
+            selecting and opening menus. Each game has its own functions for
+            these buttons.
+          </li>
+          <li>
+            <strong>5. Meta Button</strong><br />
+            <strong>Function:</strong> This is located under the joystick of the
+            right controller.<br />
+            <strong>Use:</strong> Press the Meta button to open the menu or go
+            to the Home screen. Hold this button to re-center the image.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 5. Selecting & Launching Apps -->
+      <section id="app-launch">
+        <h2>Navigating with the Controllers</h2>
+        <ol>
+          <li>
+            <strong>Interacting with the menu:</strong> Use the joystick to
+            navigate and the trigger button to select items.
+          </li>
+          <li>
+            <strong>Selecting and holding:</strong> Press the trigger to select
+            and use the grip button to hold objects.
+          </li>
+          <div class="image"><img src="images/image16.png" alt=""></div>
+          <li>
+            <strong>Re-center:</strong> If you notice that the image is missing
+            alignment, hold down the Meta button to re-center the image.
+          </li>
+        </ol>
+        <p>
+          <strong>Tip:</strong> Experiment with the buttons to learn their
+          functions. Most VR apps offer a quick tutorial to help you get
+          familiar with the controls.
+        </p>
+
+        <div class="image17"><img src="images/image17.png" alt=""></div>
+
+        <h2>Select and launch an app</h2>
+        <ol>
+          <li>
+            <strong>Home Menu:</strong> After booting, you will be taken to the
+            Home Menu.
+          </li>
+          <li>
+            <strong>Open App Drawer:</strong> Use the controller to select the
+            App icon in the toolbar at the bottom. This will open your library
+            of apps and games.
+          </li>
+          <li>
+            <strong>Select App:</strong> Scroll through the list and select the
+            app you want to launch by pressing the trigger button (fired by the
+            index finger).
+          </li>
+          <li>
+            <strong>Launch App:</strong> The selected app will now open, and you
+            can start playing or using the application.
+          </li>
+        </ol>
+        <p>
+          <strong>Tip:</strong> To visit the Meta Store for new apps, go to the
+          Store icon in the toolbar. Here you can download games and
+          applications.
+        </p>
+        <div class="image"><img src="images/image18.png" alt=""></div>
+      </section>
+
+      <!-- 6. Setting up a Playing Field (Guardian) -->
+      <section id="guardian">
+        <h2>Setting up a playing field (Guardian)</h2>
+        <p>
+          The Guardian feature ensures that you stay safely within a demarcated
+          playing area. Follow these steps to set up a playing field:
+        </p>
+
+        <ol>
+          <li>
+            <strong>Auto Prompt:</strong> When starting up, the Meta Quest 3
+            will usually automatically prompt you to set up a play area.
+          </li>
+          <li>
+            <strong>Choose Boundary Type:</strong> You can choose between
+            Stationary (a fixed spot, good for sitting) or Roomscale (a larger
+            play area for movement).
+            <ul>
+              <li>
+                <strong>Stationary:</strong> Choose this option if you're
+                staying in one place and not moving around.
+              </li>
+              <li>
+                <strong>Roomscale:</strong> Choose this option for a large play
+                area and movement.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Set Floor Height:</strong> Use the controller to point to
+            the floor and confirm. This helps the headset estimate the height of
+            the environment.
+          </li>
+
+          <div class="image"><img src="images/image19.png" alt=""></div>
+          <li>
+            <strong>Delineate Playfield:</strong> If you have chosen Roomscale,
+            you will be asked to walk around the room with the controller
+            pointed at the ground. This creates a virtual boundary.
+          </li>
+          <li>
+            <strong>Confirm:</strong> Check the delineated space in the VR view
+            and confirm if you are satisfied.
+          </li>
+        </ol>
+
+        <p>
+          Now your play area is set. The Guardian will warn you when you
+          approach the boundary, keeping you safely within the space.
+        </p>
+        <p>
+          <strong>Note:</strong> The Guardian can be reset by going to
+          <code>Settings &gt; Guardian</code> if you wish to customize your
+          playing area.
+        </p>
+      </section>
+
+      <!-- 7. Connectivity & Setup -->
+      <section id="connectivity">
+        <h2>Connectivity and Setup:</h2>
+        <p>
+          For an optimal first experience, it is helpful to guide users through
+          the initial setup.
+        </p>
+
+        <h3>1. Wi-Fi Connection Setup</h3>
+        <ul>
+          <li>
+            To download apps and update the headset, the Quest 3 must be
+            connected to a Wi-Fi network. Make sure you have a stable internet
+            connection.
+          </li>
+          <li>
+            During startup, you will be prompted to set up Wi-Fi. Follow the
+            on-screen steps to select your network and enter your password.
+          </li>
+        </ul>
+
+        <h3>2. Create or Log in to Meta Account</h3>
+        <ul>
+          <li>
+            A Meta account is required to use the Meta Quest 3. Create an
+            account or log in with an existing account.
+          </li>
+          <li>
+            <strong>Note:</strong> Children under 13 may require a parental
+            control account.
+          </li>
+        </ul>
+
+        <h3>3. Firmware Updates</h3>
+        <ul>
+          <li>
+            Check for updates during setup. Firmware updates ensure that your
+            headset has the latest features and security updates.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8. Account & Privacy Settings -->
+      <section id="privacy">
+        <h2>Account and privacy settings:</h2>
+        <p>
+          Especially for new users, it is important to know how their privacy is
+          protected in the VR environment.
+        </p>
+
+        <h3>1. Privacy Settings View</h3>
+        <ul>
+          <li>
+            In <code>Settings &gt; Privacy</code>, you can choose who can see
+            your online activity, and determine whether your online status is
+            visible to friends.
+          </li>
+          <li>
+            You can also set restrictions for certain apps and content, which is
+            useful for shared use of the Quest.
+          </li>
+        </ul>
+
+        <h3>2. Parental Controls</h3>
+        <ul>
+          <li>
+            For children, parents can set administrative settings to customize
+            the VR experience and filter out inappropriate content. This can be
+            done via the parental control account in the Meta or Oculus app.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 9. Basic Gestures & Interactions -->
+      <section id="gestures">
+        <h2>Basic gestures and interactions for VR:</h2>
+        <p>
+          For new VR users, a quick tutorial on basic gestures can be helpful.
+        </p>
+
+        <h3>1. Menus and Interfaces Navigating</h3>
+        <ul>
+          <li>
+            Point the controller at a button or icon and press the trigger to
+            select.
+          </li>
+          <li>
+            Press the Meta button to return to the main menu or close a menu.
+          </li>
+        </ul>
+
+        <h3>2. Multitasking and Extra Features</h3>
+        <ul>
+          <li>
+            The Quest 3 supports multitasking, allowing you to easily switch
+            between apps. Swipe your wrist up in the menu to open or close
+            multiple windows.
+          </li>
+          <li>
+            Notifications can be customized via
+            <code>Settings &gt; Notifications</code> so you don't get distracted
+            during VR sessions.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 10. FAQ -->
+      <section id="faq">
+        <h2>Frequently asked questions:</h2>
+
+        <h3>How do I reset the Meta Quest 3?</h3>
+        <p>
+          Press and hold the power button and the volume down button at the same
+          time to access the recovery menu. Follow the instructions there to
+          reset the Quest.
+        </p>
+
+        <h3>What to do if the image is blurry?</h3>
+        <p>
+          Adjust the lenses by gently turning the side lenses until the image is
+          clear. You can also replace the foam inside for a better fit.
+        </p>
+      </section>
+
+      <div class="back-button-container">
+        <a id="sendRequestButton" class="back-button">I have read this article</a>
+      </div>
+      
+   
+
+    <!-- Button to send request to backend back-up
     <div>
         <button id="sendRequestButton">I read this article!</button>
     </div>
+    -->
 
     <script src="env.js"></script>
     <script>
@@ -122,5 +671,6 @@
             }
         };
     </script>
+     </main>
 </body>
 </html>
