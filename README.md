@@ -140,7 +140,6 @@ Badges include:
 | Platform | Supported |
 |---------|-----------|
 | Desktop Web | ✔ |
-| Mobile Web | ✔ |
 | VR Headset Browser (Quest) | ✔ |
 | Unity WebXR | ✔ |
 
